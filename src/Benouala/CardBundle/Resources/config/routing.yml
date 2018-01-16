@@ -1,0 +1,3 @@
+benouala_card_homepage:
+    path:     /
+    defaults: { _controller: BenoualaCardBundle:Card:index }

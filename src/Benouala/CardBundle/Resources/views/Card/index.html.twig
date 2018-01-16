@@ -1,0 +1,66 @@
+{# src/Benouala/CardBundle/Resources/views/Card/index.html.twig #}
+
+{% extends "BenoualaCardBundle::layout.html.twig" %}
+
+{% block title %}
+	{{ parent() }} - Montrer ma main
+{% endblock %}
+
+{% block body %}
+	<section id="entete">
+		<p>
+			Immatriculation : <strong>{{ cardManager.candidateId }}</strong> <br>
+			Nom complet : <strong>{{ cardManager.lastName }} {{ cardManager.firstName }}</strong>
+		<p>
+		<h1>
+			Exercice :  {{ cardManager.exerciceId }}
+		</h1>
+	</section>
+	
+	
+	<span class="title">Catégories (Ordre) : </span>
+		{% for category in cardManager.categoryOrder %}
+			{{ category }}
+		{% endfor %}<br>
+	<span class="title">Valeurs (Ordre) : {% for value in cardManager.valueOrder %}</span>
+			{{ value }}
+			{% endfor %}
+			
+	<section id="tables">
+		<table>
+			<tr>
+				<th colspan="2">Cartes Tirées</th>
+			</tr>
+			<tr>
+				<th>Catégorie</th><th>Valeur</th>
+			</tr>
+			{% for card in cardManager.cards %}
+			<tr><td>{{ card.category }}</td><td>{{card.value }}</td></tr>
+			{% endfor %}
+		</table>
+		
+		
+		<table>
+			<tr>
+				<th colspan="2">Tri par Catégorie</th>
+			</tr>
+			<tr>
+				<th>Catégorie</th><th>Valeur</th>
+			</tr>
+			{% for card in cardManager.cardsOrderedByCategory %}
+			<tr><td class="ordered">{{ card.category }}</td><td>{{card.value }}</td></tr>
+			{% endfor %}
+		
+		
+		<table>
+			<tr>
+				<th colspan="2">Tri par Valeur</th>
+			</tr>
+			<tr>
+				<th>Catégorie</th><th>Valeur</th>
+			</tr>{% for card in cardManager.cardsOrderedByValue %}
+			<tr><td>{{ card.category }}</td><td class="ordered">{{card.value }}</td></tr>
+			{% endfor %}
+			</table>
+		</section>
+{% endblock %}
